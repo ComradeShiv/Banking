@@ -21,10 +21,6 @@ public class CurrentAccount extends BankAccount{
         }
     }
 
-    public CurrentAccount(String name, double balance, double minBalance) {
-        super(name, balance, minBalance);
-    }
-
     public String getTradeLicenseId() {
         return tradeLicenseId;
     }
