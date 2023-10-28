@@ -48,7 +48,7 @@ public class BankAccount {
         int AccountNumber = 0;
 
         while(true) {
-            AccountNumber = random.nextInt((int) Math.pow(10, digits - 1) + 1, (int) Math.pow(10, digits - 1) - 1);
+            AccountNumber = random.nextInt((int) Math.pow(10, digits - 1), (int) Math.pow(10, digits) - 1);
             int digit = AccountNumber;
             int checkSum = 0;
             for(int i = 0; i < digits; i++) {
