@@ -1,5 +1,7 @@
 package com.driver;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class BankAccount {
@@ -45,22 +47,27 @@ public class BankAccount {
         if(sum > 9*digits) throw new AccountNumberCanNotBeGenerated("Account Number can not be generated");
 
         Random random = new Random();
-        int AccountNumber = 0;
+        ArrayList<String> numberArray = new ArrayList<>();
 
-        while(true) {
-            AccountNumber = random.nextInt((int) Math.pow(10, digits) - 1);
-            int digit = AccountNumber;
-            int checkSum = 0;
-            for(int i = 0; i < digits; i++) {
-                int extractDigit = digit%10;
-                digit /= 10;
+        for(int i = 0; i < digits-1; i++) {
+            int possibleDigit = random.nextInt((int) Math.pow(10, digits) - 1);
 
-                checkSum += extractDigit;
-            }
+            while(sum - possibleDigit > 9 * (digits - i - 1))
+                possibleDigit = random.nextInt((int) Math.pow(10, digits) - 1);
 
-            if(checkSum == sum) break;
+            sum -= possibleDigit;
+            numberArray.add(String.valueOf(possibleDigit));
         }
-        return String.valueOf(AccountNumber);
+
+        numberArray.add(String.valueOf(sum));
+
+        Collections.shuffle(numberArray);
+
+        String accountNumber = "";
+        for(String possibleDigit: numberArray)
+            accountNumber = possibleDigit + accountNumber;
+
+        return accountNumber;
     }
 
     public void deposit(double amount) {
