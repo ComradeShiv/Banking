@@ -11,6 +11,7 @@ public class CurrentAccount extends BankAccount{
     public CurrentAccount(String name, double balance, String tradeLicenseId) throws Exception {
         // minimum balance is 5000 by default. If balance is less than 5000, throw "Insufficient Balance" exception
         super(name, balance, 5000);
+        this.tradeLicenseId = tradeLicenseId;
 
         try {
             if(balance < getMinBalance()) {
@@ -19,6 +20,7 @@ public class CurrentAccount extends BankAccount{
         } catch(InsufficientBalance e){
             System.out.println(e.getMessage());
         }
+
     }
 
     public String getTradeLicenseId() {
@@ -40,17 +42,18 @@ public class CurrentAccount extends BankAccount{
         ArrayList<Character> charList = new ArrayList<>();
         for(char ch: tradeLicenseId.toCharArray()){
             charList.add(ch);
-            freqs.put(ch, freqs.getOrDefault(ch, 1) + 1);
+            freqs.put(ch, freqs.getOrDefault(ch, 0) + 1);
         }
 
         for(Map.Entry<Character, Integer> freq: freqs.entrySet()) {
             try {
-                if(freq.getValue()%2 == 0 && freq.getValue() >= charList.size()/2)
+                if(freq.getValue()%2 == 0 && freq.getValue() > charList.size()/2)
                     throw new ValidLicenseCanNotBeGenerated("Valid License can not be generated");
-                else if(freq.getValue()%2 != 0 && freq.getValue() >= (charList.size()/2) + 1)
+                else if(freq.getValue()%2 != 0 && freq.getValue() > (charList.size()/2) + 1)
                     throw new ValidLicenseCanNotBeGenerated("Valid License can not be generated");
             } catch(ValidLicenseCanNotBeGenerated e) {
                 System.out.println(e.getMessage());
+                return;
             }
         }
 
@@ -60,6 +63,11 @@ public class CurrentAccount extends BankAccount{
                 i = 0;
             }
         }
-        System.out.println("Given Account number is valid" + String.valueOf(charList));
+
+        String validId = "";
+        for(char ch: charList)
+            validId += ch;
+
+        System.out.println("Given Account number is valid " + validId);
     }
 }

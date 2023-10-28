@@ -40,10 +40,11 @@ public class SavingsAccount extends BankAccount{
 
             double currentBalance = getBalance();
             currentBalance -= amount;
+            System.out.println("Amount withdrawal Successful. Remaining balance is " + currentBalance);
         } catch(InsufficientBalance e){
-            System.out.println();
+            System.out.println(e.getMessage());
         } catch(WithdrawalLimitException e) {
-            System.out.println();
+            System.out.println(e.getMessage());
         }
     }
 
