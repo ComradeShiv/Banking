@@ -50,10 +50,10 @@ public class BankAccount {
         ArrayList<String> numberArray = new ArrayList<>();
 
         for(int i = 0; i < digits-1; i++) {
-            int possibleDigit = random.nextInt((int) Math.pow(10, digits) - 1);
+            int possibleDigit = random.nextInt(10);
 
             while(sum - possibleDigit > 9 * (digits - i - 1))
-                possibleDigit = random.nextInt((int) Math.pow(10, digits) - 1);
+                possibleDigit = random.nextInt(10);
 
             sum -= possibleDigit;
             numberArray.add(String.valueOf(possibleDigit));

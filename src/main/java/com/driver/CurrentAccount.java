@@ -68,6 +68,6 @@ public class CurrentAccount extends BankAccount{
         for(char ch: charList)
             validId += ch;
 
-        System.out.println("Given Account number is valid " + validId);
+        System.out.println("Given LicenseId is valid: " + validId);
     }
 }

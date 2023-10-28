@@ -5,6 +5,7 @@ public class Main {
 
 //        CurrentAccount ca = new CurrentAccount("Shiv" , 10000, "jnzvjfdjjkjsf");
 //        ca.validateLicenseId();
+//        System.out.println(ca.generateAccountNumber(5, 25));
 //
 //        SavingsAccount sa = new SavingsAccount("Shiv" , 10000, 1000, 2);
 //        sa.withdraw(2000);
