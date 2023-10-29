@@ -74,20 +74,16 @@ public class BankAccount {
         //add amount to balance
         if(amount > 0)
             this.balance += amount;
-        System.out.println("Amount Deposited");
+//        System.out.println("Amount Deposited");
     }
 
     public void withdraw(double amount) throws Exception {
         // Remember to throw "Insufficient Balance" exception, if the remaining amount would be less than minimum balance
-//        try{
             if(balance < minBalance+amount)
-                throw new Exception("Insufficient Balance");
+                throw new InsufficientBalance("Insufficient Balance");
 
             this.balance -= amount;
 //            System.out.println("Successful Withdrawal");
-//        } catch (InsufficientBalance e){
-//            System.out.println(e.getMessage());
-//        }
     }
 
 }

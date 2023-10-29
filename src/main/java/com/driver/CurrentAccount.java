@@ -12,13 +12,9 @@ public class CurrentAccount extends BankAccount{
         // minimum balance is 5000 by default. If balance is less than 5000, throw "Insufficient Balance" exception
         super(name, balance, 5000);
 
-//        try {
-            if(balance < this.getMinBalance()) {
-                throw new Exception("Insufficient Balance");
-            }
-//        } catch(InsufficientBalance e){
-//            System.out.println(e.getMessage());
-//        }
+        if(balance < this.getMinBalance()) {
+            throw new InsufficientBalance("Insufficient Balance");
+        }
 
         this.tradeLicenseId = tradeLicenseId;
     }
@@ -45,17 +41,9 @@ public class CurrentAccount extends BankAccount{
             freqs.put(ch, freqs.getOrDefault(ch, 0) + 1);
         }
 
-        for(Map.Entry<Character, Integer> freq: freqs.entrySet()) {
-//            try {
-                if(freq.getValue()%2 == 0 && freq.getValue() > charList.size()/2)
-                    throw new Exception("Valid License can not be generated");
-                else if(freq.getValue()%2 != 0 && freq.getValue() > (charList.size()/2) + 1)
-                    throw new Exception("Valid License can not be generated");
-//            } catch(ValidLicenseCanNotBeGenerated e) {
-//                System.out.println(e.getMessage());
-//                return;
-//            }
-        }
+        for(Map.Entry<Character, Integer> freq: freqs.entrySet())
+                if(freq.getValue() > (charList.size() + 1)/2)
+                    throw new ValidLicenseCanNotBeGenerated("Valid License can not be generated");
 
         for(int i = 0; i < charList.size()-1; i++) {
             if(charList.get(i) == charList.get(i+1)) {
