@@ -14,7 +14,7 @@ public class CurrentAccount extends BankAccount{
 
 //        try {
             if(balance < this.getMinBalance()) {
-                throw new InsufficientBalance("Insufficient Balance");
+                throw new Exception("Insufficient Balance");
             }
 //        } catch(InsufficientBalance e){
 //            System.out.println(e.getMessage());
@@ -48,9 +48,9 @@ public class CurrentAccount extends BankAccount{
         for(Map.Entry<Character, Integer> freq: freqs.entrySet()) {
 //            try {
                 if(freq.getValue()%2 == 0 && freq.getValue() > charList.size()/2)
-                    throw new ValidLicenseCanNotBeGenerated("Valid License can not be generated");
+                    throw new Exception("Valid License can not be generated");
                 else if(freq.getValue()%2 != 0 && freq.getValue() > (charList.size()/2) + 1)
-                    throw new ValidLicenseCanNotBeGenerated("Valid License can not be generated");
+                    throw new Exception("Valid License can not be generated");
 //            } catch(ValidLicenseCanNotBeGenerated e) {
 //                System.out.println(e.getMessage());
 //                return;
@@ -69,6 +69,6 @@ public class CurrentAccount extends BankAccount{
             validId += ch;
 
         this.tradeLicenseId = validId;
-        System.out.println("Given LicenseId is valid: " + validId);
+//        System.out.println("Given LicenseId is valid: " + validId);
     }
 }
