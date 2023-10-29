@@ -79,15 +79,15 @@ public class BankAccount {
 
     public void withdraw(double amount) throws Exception {
         // Remember to throw "Insufficient Balance" exception, if the remaining amount would be less than minimum balance
-        try{
+//        try{
             if(balance < minBalance+amount)
                 throw new InsufficientBalance("Insufficient Balance");
 
             this.balance -= amount;
             System.out.println("Successful Withdrawal");
-        } catch (InsufficientBalance e){
-            System.out.println(e.getMessage());
-        }
+//        } catch (InsufficientBalance e){
+//            System.out.println(e.getMessage());
+//        }
     }
 
 }

@@ -12,13 +12,13 @@ public class CurrentAccount extends BankAccount{
         // minimum balance is 5000 by default. If balance is less than 5000, throw "Insufficient Balance" exception
         super(name, balance, 5000);
 
-        try {
-            if(balance < getMinBalance()) {
+//        try {
+            if(balance < this.getMinBalance()) {
                 throw new InsufficientBalance("Insufficient Balance");
             }
-        } catch(InsufficientBalance e){
-            System.out.println(e.getMessage());
-        }
+//        } catch(InsufficientBalance e){
+//            System.out.println(e.getMessage());
+//        }
 
         this.tradeLicenseId = tradeLicenseId;
     }
@@ -46,21 +46,21 @@ public class CurrentAccount extends BankAccount{
         }
 
         for(Map.Entry<Character, Integer> freq: freqs.entrySet()) {
-            try {
+//            try {
                 if(freq.getValue()%2 == 0 && freq.getValue() > charList.size()/2)
                     throw new ValidLicenseCanNotBeGenerated("Valid License can not be generated");
                 else if(freq.getValue()%2 != 0 && freq.getValue() > (charList.size()/2) + 1)
                     throw new ValidLicenseCanNotBeGenerated("Valid License can not be generated");
-            } catch(ValidLicenseCanNotBeGenerated e) {
-                System.out.println(e.getMessage());
-                return;
-            }
+//            } catch(ValidLicenseCanNotBeGenerated e) {
+//                System.out.println(e.getMessage());
+//                return;
+//            }
         }
 
         for(int i = 0; i < charList.size()-1; i++) {
             if(charList.get(i) == charList.get(i+1)) {
                 Collections.shuffle(charList);
-                i = 0;
+                i = -1;
             }
         }
 
@@ -68,6 +68,7 @@ public class CurrentAccount extends BankAccount{
         for(char ch: charList)
             validId += ch;
 
+        this.tradeLicenseId = validId;
         System.out.println("Given LicenseId is valid: " + validId);
     }
 }
