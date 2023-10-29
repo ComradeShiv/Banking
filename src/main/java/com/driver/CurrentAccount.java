@@ -60,7 +60,7 @@ public class CurrentAccount extends BankAccount{
         for(int i = 0; i < charList.size()-1; i++) {
             if(charList.get(i) == charList.get(i+1)) {
                 Collections.shuffle(charList);
-                i = -1;
+                i = 0;
             }
         }
 
