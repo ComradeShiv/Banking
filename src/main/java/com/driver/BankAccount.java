@@ -84,7 +84,7 @@ public class BankAccount {
                 throw new Exception("Insufficient Balance");
 
             this.balance -= amount;
-            System.out.println("Successful Withdrawal");
+//            System.out.println("Successful Withdrawal");
 //        } catch (InsufficientBalance e){
 //            System.out.println(e.getMessage());
 //        }
