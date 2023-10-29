@@ -52,7 +52,7 @@ public class BankAccount {
         for(int i = 0; i < digits-1; i++) {
             int possibleDigit = random.nextInt(10);
 
-            while(sum - possibleDigit < digits - i - 1 || sum - possibleDigit > 9 * (digits - i - 1))
+            while(sum - possibleDigit < 0 || sum - possibleDigit > 9 * (digits - i - 1))
                 possibleDigit = random.nextInt(10);
 
             sum -= possibleDigit;
