@@ -38,9 +38,8 @@ public class SavingsAccount extends BankAccount{
             if(amount > maxWithdrawalLimit)
                 throw new WithdrawalLimitException("Maximum Withdraw Limit Exceed");
 
-            double currentBalance = getBalance();
-            currentBalance -= amount;
-            System.out.println("Amount withdrawal Successful. Remaining balance is " + currentBalance);
+            this.setBalance(this.getBalance() - amount);
+            System.out.println("Amount withdrawal Successful. Remaining balance is " + this.getBalance());
         } catch(InsufficientBalance e){
             System.out.println(e.getMessage());
         } catch(WithdrawalLimitException e) {
@@ -50,13 +49,13 @@ public class SavingsAccount extends BankAccount{
 
     public double getSimpleInterest(int years){
         // Return the final amount considering that bank gives simple interest on current amount
-        double simpleInterest = (getBalance() * rate * years)/100;
-        return getBalance() + simpleInterest;
+        double simpleInterest = (this.getBalance() * rate * years)/100;
+        return this.getBalance() + simpleInterest;
     }
 
     public double getCompoundInterest(int times, int years){
         // Return the final amount considering that bank gives compound interest on current amount given times per year
-        return getBalance()*(Math.pow(1+(rate/times), times*years));
+        return this.getBalance()*(Math.pow(1+(rate/times), times*years));
     }
 
 }
