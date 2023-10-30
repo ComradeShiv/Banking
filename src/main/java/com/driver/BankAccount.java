@@ -7,7 +7,7 @@ import java.util.Random;
 public class BankAccount {
 
     private String name;
-    double balance;
+    private double balance;
     private double minBalance;
 
     public BankAccount(String name, double balance, double minBalance) {
@@ -17,7 +17,7 @@ public class BankAccount {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -25,7 +25,7 @@ public class BankAccount {
     }
 
     public double getBalance() {
-        return balance;
+        return this.balance;
     }
 
     public void setBalance(double balance) {
@@ -33,7 +33,7 @@ public class BankAccount {
     }
 
     public double getMinBalance() {
-        return minBalance;
+        return this.minBalance;
     }
 
     public void setMinBalance(double minBalance) {
@@ -44,30 +44,60 @@ public class BankAccount {
         //Each digit of an account number can lie between 0 and 9 (both inclusive)
         //Generate account number having given number of 'digits' such that the sum of digits is equal to 'sum'
         //If it is not possible, throw "Account Number can not be generated" exception
-        if(sum > 9*digits) throw new AccountNumberCanNotBeGenerated("Account Number can not be generated");
+        StringBuilder accountNo = new StringBuilder();
+        int j = (int) Math.ceil((double) sum / digits);
 
-        Random random = new Random();
-        ArrayList<String> numberArray = new ArrayList<>();
+        if (j <= 9) {
+            int i = j;
+            while (digits > 0 && sum >= 0) {
+                if (i > 9)
+                    i = j;
+                if (sum < i)
+                    i = sum;
 
-        for(int i = 0; i < digits-1; i++) {
-            int possibleDigit = random.nextInt(10);
+                accountNo.append(i);
+                sum -= i;
 
-            while(sum - possibleDigit < 0 || sum - possibleDigit > 9 * (digits - i - 1))
-                possibleDigit = random.nextInt(10);
+                ++i;
+                --digits;
+            }
 
-            sum -= possibleDigit;
-            numberArray.add(String.valueOf(possibleDigit));
+            return accountNo.toString();
         }
+        else
+            throw new Exception("Account Number can not be generated");
 
-        numberArray.add(String.valueOf(sum));
 
-        Collections.shuffle(numberArray);
-
-        String accountNumber = "";
-        for(String possibleDigit: numberArray)
-            accountNumber = possibleDigit + accountNumber;
-
-        return accountNumber;
+//        if(sum > 9*digits) throw new AccountNumberCanNotBeGenerated("Account Number can not be generated");
+//
+//        Random random = new Random();
+//        ArrayList<String> numberArray = new ArrayList<>();
+//
+//        for(int i = 0; i < digits; i++) {
+//            int possibleDigit = random.nextInt(10);
+//
+//            while(sum - possibleDigit < 0 || sum - possibleDigit > 9 * (digits - i - 1))
+//                possibleDigit = random.nextInt(10);
+//
+//            sum -= possibleDigit;
+//            numberArray.add(String.valueOf(possibleDigit));
+//        }
+//
+//        if(sum == 0)
+//        numberArray.add(String.valueOf(sum));
+//
+//        if(numberArray.size() > digits) {
+//            Collections.sort(numberArray);
+//            int extra = numberArray.remove(0)
+//        }
+//
+//        Collections.shuffle(numberArray);
+//
+//        String accountNumber = "";
+//        for(String possibleDigit: numberArray)
+//            accountNumber = possibleDigit + accountNumber;
+//
+//        return accountNumber;
     }
 
     public void deposit(double amount) {
