@@ -34,12 +34,10 @@ public class SavingsAccount extends BankAccount{
         if(amount > maxWithdrawalLimit)
             throw new WithdrawalLimitException("Maximum Withdraw Limit Exceed");
 
-        super.withdraw(amount);
+        if(amount > this.getBalance())
+            throw new InsufficientBalance("Insufficient Balance");
 
-//        if(amount > this.getBalance())
-//            throw new InsufficientBalance("Insufficient Balance");
-//
-//        this.setBalance(this.getBalance() - amount);
+        this.setBalance(this.getBalance() - amount);
 //            System.out.println("Amount withdrawal Successful. Remaining balance is " + this.getBalance());
     }
 
