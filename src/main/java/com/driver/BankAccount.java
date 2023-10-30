@@ -6,9 +6,9 @@ import java.util.Random;
 
 public class BankAccount {
 
-    private String name;
-    double balance;
-    private double minBalance;
+    private final String name;
+    private double balance;
+    private final double minBalance;
 
     public BankAccount(String name, double balance, double minBalance) {
         this.name = name;
@@ -20,9 +20,9 @@ public class BankAccount {
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+//    public void setName(String name) {
+//        this.name = name;
+//    }
 
     public double getBalance() {
         return this.balance;
@@ -36,9 +36,9 @@ public class BankAccount {
         return this.minBalance;
     }
 
-    public void setMinBalance(double minBalance) {
-        this.minBalance = minBalance;
-    }
+//    public void setMinBalance(double minBalance) {
+//        this.minBalance = minBalance;
+//    }
 
     public String generateAccountNumber(int digits, int sum) throws Exception{
         //Each digit of an account number can lie between 0 and 9 (both inclusive)
@@ -112,7 +112,7 @@ public class BankAccount {
             if(this.balance < this.minBalance+amount)
                 throw new InsufficientBalance("Insufficient Balance");
 
-            this.balance -= amount;
+                this.balance -= amount;
 //            System.out.println("Successful Withdrawal");
     }
 
