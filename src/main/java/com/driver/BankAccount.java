@@ -7,7 +7,7 @@ import java.util.Random;
 public class BankAccount {
 
     private final String name;
-    private double balance;
+    double balance;
     private final double minBalance;
 
     public BankAccount(String name, double balance, double minBalance) {
